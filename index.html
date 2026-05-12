@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavel Tanaskov - CTO | Head of Development</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0a1428;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header & Language Toggle */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Title Section */
+        .title-section h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .title-section .subtitle {
+            font-size: 18px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: var(--bg-alt);
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+        }
+
+        .profile-section h2 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .profile-section p {
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* Competencies */
+        .competencies {
+            margin: 50px 0;
+        }
+
+        .competencies h2 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .skill-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .skill-item span {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Experience */
+        .experience {
+            margin: 50px 0;
+        }
+
+        .experience h2 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .job {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job:last-child {
+            border-bottom: none;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .job-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .company {
+            font-size: 15px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .job-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .job-description {
+            margin: 16px 0;
+            padding-left: 20px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .job-description h4 {
+            font-size: 14px;
+            color: var(--primary);
+            margin: 12px 0 8px 0;
+            font-weight: 600;
+        }
+
+        .job-description ul {
+            list-style: none;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .job-description li:before {
+            content: "▪ ";
+            color: var(--accent);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .tech-stack {
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--bg-alt);
+            border-radius: 4px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .tech-stack strong {
+            color: var(--primary);
+        }
+
+        /* Education */
+        .education {
+            margin: 50px 0;
+        }
+
+        .education h2 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .edu-item {
+            padding: 16px;
+            background: var(--bg-alt);
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .edu-item strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .edu-item span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid var(--accent);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .lang-toggle {
+                display: none;
+            }
+
+            header {
+                border-bottom: 2px solid #000;
+            }
+
+            .profile-section,
+            .skill-item,
+            .job-description,
+            .tech-stack,
+            .edu-item {
+                background: white;
+                border: 1px solid #ddd;
+            }
+
+            a {
+                color: #0066cc;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 16px;
+            }
+
+            .title-section h1 {
+                font-size: 28px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden content for language toggle */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-section">
+                <h1>Pavel Tanaskov</h1>
+                <div class="subtitle lang-title">Head of Development · Engineering Manager</div>
+                <div class="contact-info">
+                    <span>📧 <a href="mailto:hebre@mail.ru">hebre@mail.ru</a></span>
+                    <span>📞 +7 (921) 951-09-66</span>
+                    <span>💬 <a href="https://t.me/ptanaskov">@ptanaskov</a></span>
+                </div>
+            </div>
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="ru">РУ</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </header>
+
+        <!-- Russian Version -->
+        <div data-lang-content="ru">
+            <section class="profile-section">
+                <h2>Профессиональный профиль</h2>
+                <p>Технический руководитель с широким опытом от системного программирования на C++ до построения распределённых облачных бэкендов для высоконагруженных игровых и enterprise-продуктов. Выстраиваю команды с нуля, формирую архитектуру, строю процессы разработки, релизов и CI/CD. Совмещаю глубокую техническую экспертизу с управленческими навыками: найм, развитие, планирование, кросс-командное взаимодействие.</p>
+            </section>
+
+            <section class="competencies">
+                <h2>Ключевые компетенции</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Backend Architecture</strong>
+                        <span>Масштабируемые облачные системы, микросервисы, распределённые транзакции</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>DevOps & Infrastructure</strong>
+                        <span>AWS, GCP, Yandex Cloud, Kubernetes, Docker, Terraform</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Team Leadership</strong>
+                        <span>Найм, развитие, планирование, кросс-командное взаимодействие</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Database Design</strong>
+                        <span>PostgreSQL, ClickHouse, Redis, аналитические системы</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Languages & Frameworks</strong>
+                        <span>C++, Python, Kotlin, Go, Java, Terraform</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Observability & Performance</strong>
+                        <span>Prometheus, ELK, Jaeger, нагрузочное тестирование</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experience">
+                <h2>Опыт работы</h2>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Lesta Games</span>
+                        <span class="job-title">Head of Backend — Новая MMO</span>
+                        <span class="job-date">ноябрь 2020 — март 2026</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Формирование требований к бэкенду: от запросов геймдизайнеров, маркетинга, QA, DevOps и внешних сервисов (AWS и др.)</li>
+                            <li>Проектирование архитектуры: масштабируемость, отказоустойчивость, observability, eventually consistent распределённые транзакции</li>
+                            <li>Выстраивание взаимодействия с клиентской разработкой, QA, BI, гейм-дизайнерами, оперированием</li>
+                            <li>Построение нагрузочного тестирования; переезд на Kubernetes</li>
+                            <li>Найм, развитие команды; стратегическое (роадмап) и тактическое (спринт/релиз) планирование</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Собрана сильная backend-команда; прозрачные релизные роадмапы</li>
+                            <li>На больших плейтестах — единственный backend-инцидент: обнаружен, локализован и исправлен за 1 час</li>
+                            <li>Нагрузочное тестирование: 200 000 CCU при интенсивности запросов на порядки выше реальной — с минимальным масштабированием</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> AWS, Python, Kotlin, Kafka, Docker, Kubernetes, PostgreSQL, ClickHouse, Jaeger, Prometheus, ELK</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Lesta Games</span>
+                        <span class="job-title">Head of Backend — Построение новой инфраструктуры</span>
+                        <span class="job-date">ноябрь 2020 — март 2026</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Найм команды разработки с нуля; выстраивание процессов разработки, релизов, CI/CD</li>
+                            <li>Анализ старого решения, сбор требований со всех заинтересованных сторон</li>
+                            <li>Проектирование архитектуры: отказоустойчивость, observability, единые подходы</li>
+                            <li>Прототипирование сложных интеграций с облачными провайдерами; участие в разработке сервисов</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Команда из 8 разработчиков; 2 стажёра выросли до junior и самостоятельно реализовали крупный сервис</li>
+                            <li>Более 10 сложных интеграций с различными облачными провайдерами</li>
+                            <li>Выстроено интеграционное автотестирование совместно с QA-командой</li>
+                            <li>Начаты работы по внутрикорпоративному PaaS</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> AWS, Google Cloud, Yandex Cloud, Python, Terraform, Golang, Kafka, RabbitMQ, Docker, Kubernetes, PostgreSQL, Prometheus, ELK</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Ciliz</span>
+                        <span class="job-title">Head of Backend & Infrastructure — Roblox-like игра</span>
+                        <span class="job-date">август 2019 — сентябрь 2020</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Анализ требований совместно с геймдизайнерами и клиентской разработкой</li>
+                            <li>Изучение облачных и on-premise решений, выбор стека; проектирование архитектуры и прототипирование</li>
+                            <li>Деплой prod и staging в Kubernetes (AWS и локально); планирование релизов и управление изменениями</li>
+                            <li>Внедрение и реализация DevOps-практик</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Выбраны базовая платформа (PlayFab) и облако (AWS); совместно с лидом разработки сформировано архитектурное решение</li>
+                            <li>Прозрачное планирование, позволявшее другим командам правильно выстраивать ожидания</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> Java, Python, AWS, Azure PlayFab, NATS, PostgreSQL, Kubernetes, Terraform, Ansible, Prometheus</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Social Quantum</span>
+                        <span class="job-title">Head of Backend Department</span>
+                        <span class="job-date">май 2017 — июнь 2019</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Создание нового бэкенда для новых продуктов компании</li>
+                            <li>Аудит и улучшение существующих бэкендов</li>
+                            <li>Перестройка продуктовой и IT-инфраструктуры; переход легаси-продуктов на контейнеризацию и масштабирование</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Wargaming</span>
+                        <span class="job-title">Solution Architect</span>
+                        <span class="job-date">октябрь 2016 — май 2017</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Участие в формировании технологической стратегии компании</li>
+                            <li>Проектирование архитектуры и разработка POC новой системы рейтингов игроков</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Полный пересчёт всех рейтингов несколько раз в сутки без потери производительности</li>
+                            <li>Совместно с командой математиков и BI сформирован и реализован новый алгоритм расчётов</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> Python, R, Redis, PostgreSQL, ClickHouse</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Zodiac Interactive</span>
+                        <span class="job-title">Team Lead R&D / PM</span>
+                        <span class="job-date">май 2015 — сентябрь 2016</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li><strong>Team Lead:</strong> поддержка OpenGL в легаси-стеке; адаптация CEF (Chromium Embedded Framework) для STB — расширила возможности UI/UX</li>
+                            <li><strong>PM:</strong> планирование, контроль, роадмапы — перестали проваливать сроки, повысилась прозрачность планирования</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Synqera</span>
+                        <span class="job-title">Tech Lead / PM / Architect</span>
+                        <span class="job-date">август 2011 — апрель 2015</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">Программно-аппаратный комплекс персонализации коммуникаций в ритейле. 4 команды под руководством: Web, Platform, Devices, Admin.</p>
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Анализ требований, формирование бэклога, планирование; взаимодействие с подрядчиками и ритейл-партнёрами</li>
+                            <li>Подготовка выставок и презентаций; интеграции с ритейлом</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Практически нулевой срыв сроков без кранчей</li>
+                            <li>OS на оборудовании компании полностью сертифицирована по ФСТЕК</li>
+                            <li>Отличные результаты в пилотном проекте с «Улыбкой радуги»</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C/C++, Python, JS, Java</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Yota Lab</span>
+                        <span class="job-title">Senior Software Developer</span>
+                        <span class="job-date">июнь 2009 — июль 2011</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Yota Music for Desktop; MCI (CMS System)</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++, C#, Qt, Oracle, PostgreSQL</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Bridge Quest Labs</span>
+                        <span class="job-title">Team Lead — Quick Database Engine</span>
+                        <span class="job-date">2006 — 2009</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">R/O database-движок: импорт больших объёмов из реляционных БД, сложные аналитические запросы на малых мощностях. Несколько SQL-диалектов.</p>
+                        <h4>Обязанности:</h4>
+                        <ul>
+                            <li>Управление командой разработки физического плана исполнения запросов; найм; архитектура и разработка</li>
+                        </ul>
+                        <h4>Достижения:</h4>
+                        <ul>
+                            <li>Производительность сложных запросов увеличена в разы, местами — на порядки</li>
+                            <li>Продукт активно использовался бизнесом</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Alcatel</span>
+                        <span class="job-title">SW Engineer / Feature Lead — 5020 Spatial Atrium Softswitch</span>
+                        <span class="job-date">2004 — 2006</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">Distributed Mobile Switching (NGN): разделение Call Server и Media Gateway.</p>
+                        <ul>
+                            <li>Реализация фич для Call Server; поддержка СОРМ на базе CALEA с интеграцией оборудования</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Navis Co</span>
+                        <span class="job-title">SW Developer / Architect</span>
+                        <span class="job-date">2003 — 2005</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Система управления интерцепторами скоростного катера (realtime, цикл 25–30 мс): подсистемы резервирования, IO, Kernel</li>
+                            <li>Система динамического позиционирования судна v2: подсистемы резервирования, обмена сообщениями, конфигурации</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Institut Setnev Tekhnologiy / Argus-Neva / Promtransavtomatika</span>
+                        <span class="job-title">SW Developer</span>
+                        <span class="job-date">1999 — 2002</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Криптомаршрутизатор с поддержкой VPN (Институт Сетевых Технологий, 2001–2002)</li>
+                            <li>Персональные аппаратные криптоключи и proxy-сервер (Аргус-Нева, 2000–2001)</li>
+                            <li>Автоматические системы контроля разводных мостов СПб; внедрение QNX вместо Windows (Промтрансавтоматика, 1999–2000)</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Стек:</strong> C++</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="education">
+                <h2>Образование</h2>
+                <div class="edu-item">
+                    <strong>Санкт-Петербургский государственный университет аэрокосмического приборостроения</strong>
+                    <span>1999</span>
+                </div>
+            </section>
+
+            <footer>
+                <p>Последнее обновление: май 2026 | <a href="https://github.com" style="color: var(--accent);">GitHub</a> | <a href="https://linkedin.com" style="color: var(--accent);">LinkedIn</a></p>
+            </footer>
+        </div>
+
+        <!-- English Version -->
+        <div data-lang-content="en" class="hidden">
+            <section class="profile-section">
+                <h2>Professional Profile</h2>
+                <p>Technical leader with extensive experience spanning from systems programming in C++ to designing distributed cloud backends for high-load gaming and enterprise products. I build teams from scratch, establish architecture, implement development and release processes, and manage CI/CD pipelines. I combine deep technical expertise with strong management skills: hiring, team development, strategic planning, and cross-team collaboration.</p>
+            </section>
+
+            <section class="competencies">
+                <h2>Key Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong>Backend Architecture</strong>
+                        <span>Scalable cloud systems, microservices, distributed transactions</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>DevOps & Infrastructure</strong>
+                        <span>AWS, GCP, Yandex Cloud, Kubernetes, Docker, Terraform</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Team Leadership</strong>
+                        <span>Hiring, development, planning, cross-team collaboration</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Database Design</strong>
+                        <span>PostgreSQL, ClickHouse, Redis, analytics systems</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Languages & Frameworks</strong>
+                        <span>C++, Python, Kotlin, Go, Java, Terraform</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong>Observability & Performance</strong>
+                        <span>Prometheus, ELK, Jaeger, load testing</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="experience">
+                <h2>Work Experience</h2>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Lesta Games</span>
+                        <span class="job-title">Head of Backend — New MMO</span>
+                        <span class="job-date">November 2020 — March 2026</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Formulated backend requirements: consolidated input from game designers, marketing, QA, DevOps, and external services (AWS, etc.)</li>
+                            <li>Designed architecture emphasizing scalability, fault tolerance, observability, and eventually-consistent distributed transactions</li>
+                            <li>Established collaboration channels with client development, QA, BI, game designers, and operations teams</li>
+                            <li>Built load testing infrastructure; orchestrated migration to Kubernetes</li>
+                            <li>Recruited and developed team; managed strategic (roadmap) and tactical (sprint/release) planning</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Built a strong backend team with transparent release roadmaps</li>
+                            <li>During large playtests: single backend incident detected, localized, and resolved within 1 hour</li>
+                            <li>Load testing: 200,000 CCU with request intensity orders of magnitude above production with minimal scaling</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> AWS, Python, Kotlin, Kafka, Docker, Kubernetes, PostgreSQL, ClickHouse, Jaeger, Prometheus, ELK</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Lesta Games</span>
+                        <span class="job-title">Head of Backend — Infrastructure Modernization</span>
+                        <span class="job-date">November 2020 — March 2026</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Built development team from ground zero; established development, release, and CI/CD processes</li>
+                            <li>Analyzed legacy solutions and gathered requirements from all stakeholders</li>
+                            <li>Designed architecture prioritizing fault tolerance, observability, and unified approaches</li>
+                            <li>Prototyped complex cloud provider integrations; participated in service development</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Grew team to 8 developers; mentored 2 interns to junior level who independently delivered major service</li>
+                            <li>Executed 10+ complex integrations with various cloud providers</li>
+                            <li>Established integration test automation in collaboration with QA</li>
+                            <li>Initiated internal PaaS development</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> AWS, Google Cloud, Yandex Cloud, Python, Terraform, Golang, Kafka, RabbitMQ, Docker, Kubernetes, PostgreSQL, Prometheus, ELK</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Ciliz</span>
+                        <span class="job-title">Head of Backend & Infrastructure — Roblox-like Game</span>
+                        <span class="job-date">August 2019 — September 2020</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Analyzed requirements collaboratively with game designers and client development</li>
+                            <li>Evaluated cloud and on-premise solutions; selected tech stack and prototyped architecture</li>
+                            <li>Deployed prod and staging on Kubernetes (AWS and on-prem); managed releases and changes</li>
+                            <li>Implemented and promoted DevOps practices</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Selected primary platform (PlayFab) and cloud (AWS); co-designed comprehensive architecture</li>
+                            <li>Transparent planning that enabled other teams to set proper expectations</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> Java, Python, AWS, Azure PlayFab, NATS, PostgreSQL, Kubernetes, Terraform, Ansible, Prometheus</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Social Quantum</span>
+                        <span class="job-title">Head of Backend Department</span>
+                        <span class="job-date">May 2017 — June 2019</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Built new backends for company's new products</li>
+                            <li>Audited and improved existing backends</li>
+                            <li>Modernized product and IT infrastructure; migrated legacy systems to containerization and scaling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Wargaming</span>
+                        <span class="job-title">Solution Architect</span>
+                        <span class="job-date">October 2016 — May 2017</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Contributed to technology strategy formulation</li>
+                            <li>Architected and developed POC for new player rating system</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Recalculated all player ratings multiple times daily without performance degradation</li>
+                            <li>Co-developed new calculation algorithm with mathematicians and BI team</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> Python, R, Redis, PostgreSQL, ClickHouse</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Zodiac Interactive</span>
+                        <span class="job-title">Team Lead R&D / PM</span>
+                        <span class="job-date">May 2015 — September 2016</span>
+                    </div>
+                    <div class="job-description">
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li><strong>Team Lead:</strong> maintained OpenGL support in legacy stack; adapted CEF (Chromium Embedded Framework) for STB, expanding UI/UX capabilities</li>
+                            <li><strong>PM:</strong> planning, control, roadmaps — eliminated deadline misses, increased planning transparency</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Synqera</span>
+                        <span class="job-title">Tech Lead / PM / Architect</span>
+                        <span class="job-date">August 2011 — April 2015</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">Hardware-software personalization system for retail communications. Led 4 teams: Web, Platform, Devices, Admin.</p>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Gathered requirements, developed backlogs, managed planning; collaborated with contractors and retail partners</li>
+                            <li>Prepared exhibitions and presentations; managed retail integrations</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Nearly zero deadline misses without crunch periods</li>
+                            <li>Company's OS fully certified by FSTEK</li>
+                            <li>Outstanding pilot results with major retail partner</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C/C++, Python, JS, Java</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Yota Lab</span>
+                        <span class="job-title">Senior Software Developer</span>
+                        <span class="job-date">June 2009 — July 2011</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Yota Music for Desktop; MCI (CMS System)</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++, C#, Qt, Oracle, PostgreSQL</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Bridge Quest Labs</span>
+                        <span class="job-title">Team Lead — Quick Database Engine</span>
+                        <span class="job-date">2006 — 2009</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">Read-only database engine: high-volume imports from relational DBs, complex analytical queries on limited hardware, multiple SQL dialects.</p>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Managed query execution plan development team; recruitment; architecture and development</li>
+                        </ul>
+                        <h4>Achievements:</h4>
+                        <ul>
+                            <li>Increased complex query performance multiple times, in some cases by orders of magnitude</li>
+                            <li>Product actively used by business</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Alcatel</span>
+                        <span class="job-title">SW Engineer / Feature Lead — 5020 Spatial Atrium Softswitch</span>
+                        <span class="job-date">2004 — 2006</span>
+                    </div>
+                    <div class="job-description">
+                        <p style="margin-bottom: 12px; color: var(--text-secondary);">Distributed Mobile Switching (NGN): Call Server and Media Gateway separation.</p>
+                        <ul>
+                            <li>Implemented features for Call Server; managed SORM support based on CALEA with equipment integration</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Navis Co</span>
+                        <span class="job-title">SW Developer / Architect</span>
+                        <span class="job-date">2003 — 2005</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Interceptor control system for high-speed boat (realtime, 25–30 ms cycle): redundancy, IO, and kernel subsystems</li>
+                            <li>Dynamic vessel positioning system v2: redundancy, messaging, and configuration subsystems</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++</div>
+                    </div>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="company">Institute of Network Technologies / Argus-Neva / Promtransavtomatika</span>
+                        <span class="job-title">SW Developer</span>
+                        <span class="job-date">1999 — 2002</span>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Crypto router with VPN support (Institute of Network Technologies, 2001–2002)</li>
+                            <li>Personal hardware crypto keys and proxy server (Argus-Neva, 2000–2001)</li>
+                            <li>Automatic control systems for St. Petersburg drawbridges; QNX implementation replacing Windows (Promtransavtomatika, 1999–2000)</li>
+                        </ul>
+                        <div class="tech-stack"><strong>Stack:</strong> C++</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="education">
+                <h2>Education</h2>
+                <div class="edu-item">
+                    <strong>Saint Petersburg State University of Aerospace Instrumentation</strong>
+                    <span>1999</span>
+                </div>
+            </section>
+
+            <footer>
+                <p>Last updated: May 2026 | <a href="https://github.com" style="color: var(--accent);">GitHub</a> | <a href="https://linkedin.com" style="color: var(--accent);">LinkedIn</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const langContents = document.querySelectorAll('[data-lang-content]');
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedLang = button.getAttribute('data-lang');
+
+                // Update active button
+                langButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Toggle content
+                langContents.forEach(content => {
+                    if (content.getAttribute('data-lang-content') === selectedLang) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+
+                // Update page language attribute
+                document.documentElement.lang = selectedLang;
+
+                // Save preference
+                localStorage.setItem('preferred-lang', selectedLang);
+            });
+        });
+
+        // Load saved preference
+        const savedLang = localStorage.getItem('preferred-lang') || 'ru';
+        const savedButton = document.querySelector(`[data-lang="${savedLang}"]`);
+        if (savedButton) {
+            savedButton.click();
+        }
+    </script>
+</body>
+</html>
